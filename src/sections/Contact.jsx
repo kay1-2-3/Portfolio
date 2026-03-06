@@ -1,6 +1,7 @@
-import {Mail, Phone, MapPin, Send} from "lucide-react";
+import {Mail, Phone, MapPin, Send, CheckCircle, AlertCircle} from "lucide-react";
 import {Button} from "@/components/Button"
 import {useState} from "react";
+import emailjs from "@emailjs/browser";
 
 const contactInfo = [
     {
@@ -32,9 +33,59 @@ export const Contact = () => {
         email: "",
         message: "",
     });
+    const [isLoading, setIsLoading] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({
+        type: null,
+        message: "",
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setIsLoading(true);
+        setSubmitStatus({
+            type: null,
+            message: "",
+        });
+        try {
+            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+            
+            if (!serviceId || !templateId || !publicKey) {
+                throw new Error("EmailJS configuration is missing");
+            }
+
+            await emailjs.send(
+                serviceId,
+                templateId,
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message,
+                },
+                { publicKey }
+            );
+
+            setSubmitStatus({
+                type: "success",
+                message: "Message sent successfully!",
+            });
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+            });
+        } catch (error) {
+            console.error("Error sending email:", error);
+            setSubmitStatus({
+                type: "error",
+                message: "Failed to send message. Please try again.",
+            });
+        } finally {
+            setIsLoading(false);
+        }
+
     };
 
     return (
@@ -61,7 +112,7 @@ export const Contact = () => {
 
                 <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
                     <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
                                 <input 
@@ -103,10 +154,20 @@ export const Contact = () => {
                             />
                             </div>
 
-                            <Button className="w-full" type="submit" size="lg">
-                                Send Message
-                                <Send />
+                            <Button className="w-full" type="submit" size="lg" disabled={isLoading}>
+                                {isLoading ? "Sending..." : (<>Send Message <Send className="w-5 h-5" /></>)}
                             </Button>
+
+                            {submitStatus.type && (
+                                <div
+                                    className={`flex items-center gap-3 p-4 rounded-xl ${submitStatus.type === "success" ? "bg-green-500/10 border border-green-500/20 text-green-500" : "bg-red-500/10 border border-red-500/20 text-red-500"}`}
+                                >
+                                    
+                                    {submitStatus.type === "success" ? <CheckCircle className="w-5 h-5 flex-shrink-0" /> : <AlertCircle className="w-5 h-5 " />}
+                                    
+                                    <p className="text-sm">{submitStatus.message}</p>
+                                </div>
+                            )}
                         </form>
                     </div>
                 </div>

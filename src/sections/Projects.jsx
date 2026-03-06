@@ -11,12 +11,12 @@ const projects = [
         github: "https://github.com/kay1-2-3/webcafeland",
     },
     {
-        title: "Redwood JS",
-        description: "Customer Redwood JS fullstack application",
-        image: "/Redwood JS.jpg",
-        tags: ["React", "JavaScript", "HTML", "CSS", "API"],
-        link: "https://github.com/kay1-2-3/RedwoodJS",
-        github: "https://github.com/kay1-2-3/RedwoodJS",
+        title: "Kicker",
+        description: "Crowdfunding platform for startups",
+        image: "/kicker2.jpg",
+        tags: ["Ruby", "JavaScript", "HTML", "CSS", "API", "Sqlite3", "Rails"],
+        link: "https://github.com/kay1-2-3/kicker",
+        github: "https://github.com/kay1-2-3/kicker",
     },
     {
         title: "Gipet",
@@ -27,12 +27,12 @@ const projects = [
         github: "https://github.com/kay1-2-3/Gipet",
     },
     {
-        title: "Fintech Dashboard",
-        description: "Comprehensive financial analytics",
-        image: "/bg image.webp",
-        tags: ["React", "TypeScript"],
-        link: "#",
-        github: "#",
+        title: "Bita",
+        description: "Full Stack Template for creating a frontend and backend for websites",
+        image: "/bita.jpg",
+        tags: ["React", "TypeScript", "Sqlite3", "AdonisJS"],
+        link: "https://github.com/kay1-2-3/Bita",
+        github: "https://github.com/kay1-2-3/Bita",
     },
 ];
 
@@ -55,7 +55,7 @@ export const Projects = () => {
                         </span>
                     </h2>
                     <p className="text-muted-foreground animate-fade-in animation-delay-100">
-                        A selection of my recent work, from complex web applications to innovative tools that solve real-world problems.
+                        A selection of my recent work, from complex web applications to innovative tools.
                     </p>
                 </div>
 
@@ -67,8 +67,13 @@ export const Projects = () => {
                         >
                             {/*Image*/}
                             <div className="relative overflow-hidden aspect-video">
-                                <img src={project.image} alt={project.title}
-                                className="w-full h-full object-cover transition-transform duration-1200 group-hover:scale-110"/>
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transition-transform duration-1200 group-hover:scale-110"
+                                    style={{ imageRendering: '-webkit-optimize-contrast' }}
+                                    decoding="async"
+                                />
                                 <div
                                     className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-60"
                                 />
