@@ -10,6 +10,14 @@ const experiences = [
         current: true,
     },
     {
+        period: "August 2024 - Present",
+        role: "Freelance software engineering",
+        company: "Various clients",
+        description: "Worked on various small scale projects for clients",
+        technologies: ["React", "TypeScript", "JavaScript", "Python", "C++", "Java", "SQL", "HTML", "CSS"],
+        current: true,
+    },
+    {
         period: "August 2024 - July 2025",
         role: "Computer Science Instructor",
         company: "Study Hut Tutoring",
