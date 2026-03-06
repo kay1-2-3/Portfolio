@@ -1,30 +1,30 @@
 
 const experiences = [
     {
-        period: "2022 - Present",
-        role: "Senior Frontend Engineer",
-        company: "Tech Innovators Inc.",
+        period: "June 2025 - Present",
+        role: "Member Service Specialist",
+        company: "Unify Financial Credit Union",
         description:
-        "Leading frontend architecture for a suite of fintech projects.",
-        technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+        "Facilitated accurate data entry for over 1,200 member transactions monthly, ensuring 99.9% accuracy and reducing processing errors by 15%, thereby enhancing overall operational efficiency.",
+        technologies: [""],
         current: true,
     },
     {
-        period: "2020 - Present",
-        role: "Frontend Engineer",
-        company: "Digital Solutions Co.",
+        period: "August 2024 - July 2025",
+        role: "Computer Science Instructor",
+        company: "Study Hut Tutoring",
         description: 
-        "Built and maintained multiple React applications for",
+        "Developed and delivered innovative computer science curricula to over 150 students across multiple branches, resulting in a 40% improvement in student exam scores and increased engagement levels.",
         technologies: ["React", "TypeScript", "JavaScript"],
         current: false,
     },
     {
-        period: "2019 - 2020",
-        role: "Junior Developer",
-        company: "StartUp Labs",
+        period: "November 2022 - November 2023",
+        role: "Computer Science Student Aid",
+        company: "El Camino College",
         description:
-        "Contributed to the development of a Saas platform",
-        technologies: ["React", "TypeScript", "JavaScript"],
+        "Streamlined tutoring processes by developing clear lesson plans and resource materials, leading to a 40% increase in student engagement and timely assistance during peak periods.",
+        technologies: ["React", "TypeScript", "JavaScript", "Python", "C++", "Java", "SQL", "HTML", "CSS"],
         current: false,
     }
 ];

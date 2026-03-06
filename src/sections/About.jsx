@@ -5,24 +5,23 @@ const highlights = [
         icon: Code2,
         title: "Clean Code",
         description:
-        "Writing maintainable, scalable code that stands the test of time.",
+        "Writing maintainable, scalable code that is robust and simple.",
     },
     {
         icon: Rocket,
         title: "Performance",
         description:
-        "Optimizing for speed and delivering lightning-fast user experiences.",
+        "Optimizing for speed and emphasizing efficiency and simplicity.",
     },
     {
         icon: Users,
         title: "Collaboration",
-        description: "Working closely with teams to bring ideas to life.",
+        description: "Working closely with others to achieve common goals.",
     },
     {
         icon: Lightbulb,
         title: "Innovation",
-        description:
-        "Staying ahead with the latest technologies and best practices.",
+        description: "Always striving to improve and learn new technologies.",
     },
 ];
 
@@ -50,17 +49,25 @@ export const About = () => {
 
                     <div className="space-y-4 text-muted-foregrounded animate-fade-in animation-delay-200">
                         <p>
-                            I'm a passionate software engineer with 0 years of experience crafting digital products that make a difference.
+                            I'm an aspiring software engineer who wants to learn as much as possible about the world of software and various technologies.
+                            My journey to and within computer science started unorthodoxically; I had very little exposure to the field before starting college,
+                            and my path was paved by a series of unexpected events and opportunities.
+                            {/* I'm a passionate software engineer with 0 years of experience crafting digital products that make a difference.
                             My journey started with a curiosity for how things work on the web, and it has evolved into a deep expertise in modern
-                            frontend technologies.
+                            frontend technologies.*/}
                         </p>
                         <p>
-                            I specialize in React, Next.js and TypeScript, building everything from sleek landing pages to complex enterprise applications.
+                            I have yet to consider myself "experienced" in the field of software, however, I have a strong desire to learn more and to continue
+                            growing. Curiosity and passion to improve are my driving forces; I aim to be as competent as possible in whatever I do.
+                            {/* I specialize in React, Next.js and TypeScript, building everything from sleek landing pages to complex enterprise applications.*/}
                         </p>
                         <p>
-                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge
-                            with the developer community.
+                            When I'm not coding, you'll find me exploring new technologies or doing hackathons.
                         </p>
+                        <p>
+                            
+                        </p>
+                        
                     </div>
 
                     <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300">
