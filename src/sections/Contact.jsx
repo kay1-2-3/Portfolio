@@ -1,6 +1,6 @@
 import {Mail, Phone, MapPin, Send, CheckCircle, AlertCircle} from "lucide-react";
 import {Button} from "@/components/Button"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import emailjs from "@emailjs/browser";
 
 const contactInfo = [
@@ -39,6 +39,14 @@ export const Contact = () => {
         message: "",
     });
 
+    // Initialize EmailJS with public key (required for auth)
+    useEffect(() => {
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        if (publicKey) {
+            emailjs.init({ publicKey });
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -50,22 +58,18 @@ export const Contact = () => {
         try {
             const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
             const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-            
-            if (!serviceId || !templateId || !publicKey) {
-                throw new Error("EmailJS configuration is missing");
+
+            if (!serviceId || !templateId) {
+                throw new Error(
+                    "EmailJS config missing. Put VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY in a .env file in the project root (same folder as package.json), then stop the dev server and run: npm run dev"
+                );
             }
 
-            await emailjs.send(
-                serviceId,
-                templateId,
-                {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    message: formData.message,
-                },
-                { publicKey }
-            );
+            await emailjs.send(serviceId, templateId, {
+                from_name: formData.name,
+                from_email: formData.email,
+                message: formData.message,
+            });
 
             setSubmitStatus({
                 type: "success",
@@ -77,10 +81,11 @@ export const Contact = () => {
                 message: "",
             });
         } catch (error) {
-            console.error("Error sending email:", error);
+            const msg = error?.text || error?.message || String(error);
+            console.error("EmailJS error:", error);
             setSubmitStatus({
                 type: "error",
-                message: "Failed to send message. Please try again.",
+                message: msg || "Failed to send message. Please try again.",
             });
         } finally {
             setIsLoading(false);
@@ -105,8 +110,7 @@ export const Contact = () => {
                         </span>
                     </h2>
                     <p className="text-muted-foreground animate-fade-in animation-delay-100">
-                        Have a project in mind? I'd love to hear about it. Send me a message
-                        and let's discuss how we can work together.
+                        If you are interested in reaching out to me, please feel free to send me a message!
                     </p>
                 </div>
 
@@ -169,6 +173,37 @@ export const Contact = () => {
                                 </div>
                             )}
                         </form>
+                    </div>
+
+                    {/* Contact info & availability card */}
+                    <div className="glass p-8 rounded-3xl border border-primary/30 flex flex-col">
+                        <div className="mb-8 flex flex-col flex-1 min-h-0">
+                            <h3 className="text-lg font-semibold text-secondary-foreground mb-6">Contact Information</h3>
+                            <ul className="flex flex-col justify-between flex-1 gap-4">
+                                {contactInfo.map((item, idx) => (
+                                    <li key={idx} className="flex items-center gap-4 flex-1 min-h-[4rem]">
+                                        <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-surface border border-border flex-shrink-0">
+                                            <item.icon className="w-6 h-6 text-muted-foreground" />
+                                        </span>
+                                        <div className="min-w-0">
+                                            <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
+                                            <a href={item.href} className="text-base text-secondary-foreground hover:text-primary transition-colors break-all">
+                                                {item.value}
+                                            </a>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="mt-auto pt-6 border-t border-border">
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
+                                <span className="font-medium text-secondary-foreground">Currently Available</span>
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                                I'm currently looking for a new opportunity. If you have any questions, please feel free to contact me.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
