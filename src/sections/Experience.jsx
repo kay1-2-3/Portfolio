@@ -10,7 +10,7 @@ const experiences = [
         current: true,
     },
     {
-        period: "December 2022 - Present",
+        period: "December 2023 - Present",
         role: "Freelance software engineering",
         company: "Various clients",
         description: "Worked on various small scale projects for clients",
