@@ -3,6 +3,22 @@ import {AnimatedBorderButton} from "@/components/AnimatedBorderButton";
 
 const projects = [
     {
+        title: "AI Adoption Potential",
+        description: "Tool to analyze which countries are adopting AI to better their economy",
+        image: "/AI Adoption.jpg",
+        tags: ["React", "JavaScript", "CSS", "Uvicorn", "FastAPI"],
+        link: "https://github.com/kay1-2-3/Emerging-Countries",
+        github: "https://github.com/kay1-2-3/Emerging-Countries",
+    },
+    {
+        title: "AI Food Waste Reduction",
+        description: "Interactive AI-powered web app that helps reduce food waste",
+        image: "/AI Food Waste Reduction.jpg",
+        tags: ["React", "TypeScript", "CSS", "Uvicorn", "FastAPI"],
+        link: "https://github.com/kay1-2-3/AI-Food-Waste-Reduction",
+        github: "https://github.com/kay1-2-3/AI-Food-Waste-Reduction",
+    },
+    {
         title: "WebCafe AI",
         description: "AI creator",
         image: "/webCafe AI.jpg",
